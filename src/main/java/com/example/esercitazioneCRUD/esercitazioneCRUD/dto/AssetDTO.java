@@ -1,21 +1,22 @@
-package com.example.esercitazioneCRUD.esercitazioneCRUD.model;
+package com.example.esercitazioneCRUD.esercitazioneCRUD.dto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-@Entity
-public class AssetModel {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AssetDTO {
 	
 	private Long id;
-	private String nome;
-	private String tipo;
-	private String codiceSeriale;
 	
+	@NotBlank(message = "Il campo nome è obbligatorio!")
+    private String nome;
+    
+    @NotBlank(message = "Il campo tipo è obbligatorio!")
+    private String tipo;
+    
+    @Size(min = 5, message = "Il codice seriale deve avere almeno 5 caratteri!")
+    private String codiceSeriale;
+
+    
 	public Long getId() {
 		return id;
 	}
@@ -29,14 +30,14 @@ public class AssetModel {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getTipo() {
 		return tipo;
 	}
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	
+
 	public String getCodiceSeriale() {
 		return codiceSeriale;
 	}

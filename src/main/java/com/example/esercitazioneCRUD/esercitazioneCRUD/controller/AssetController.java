@@ -11,29 +11,31 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.esercitazioneCRUD.esercitazioneCRUD.model.AssetModel;
-import com.example.esercitazioneCRUD.esercitazioneCRUD.repository.AssetRepository;
+import com.example.esercitazioneCRUD.esercitazioneCRUD.dto.AssetDTO;
+import com.example.esercitazioneCRUD.esercitazioneCRUD.service.AssetService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/assets")
 public class AssetController {
 	
 	@Autowired
-	private AssetRepository assetRepository;
+	private AssetService assetService;
 	
 	@PostMapping
-	public AssetModel createAsset(@RequestBody AssetModel assetModel) {
-		return assetRepository.save(assetModel);
+	public AssetDTO createAsset(@Valid @RequestBody AssetDTO assetDTO) {
+		return assetService.salvaAsset(assetDTO);
 	}
 	
 	@GetMapping
-	public List<AssetModel> getAllAssets() {
-		return assetRepository.findAll();
+	public List<AssetDTO> getAllAssets() {
+		return assetService.trovaTutti();
 	}
 	
 	@DeleteMapping("/{id}")
 	public void deleteAsset(@PathVariable Long id) {
-	    assetRepository.deleteById(id);
+	    assetService.cancellaAsset(id);
 	}
 
 }
