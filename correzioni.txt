@@ -1,0 +1,30 @@
+﻿Ho abbassato il valore di java.version nel pom.xml a 21 per allineare la build al JDK disponibile nel mio ambiente.
+Perche' 21? e' una versione LTS stabile e ampiamente supportata da tool e dipendenze, riducendo i rischi di incompatibilita'.
+
+Creare due DTO distinti (Request e Response) per separare input e output dell'API.
+Domanda: in quale punto e' corretto includere l'id?
+
+Manca la profilazione applicativa:
+bella la scelta di dockerizzare MySQL ma di solito in dev si testa su H2, in collaudo su MySQL dockerizzato, in prod su un'istanza di MySQL reale (idealmente).
+NON CONFONDERE PROFILAZIONE CON BRANCHING.
+
+return assets.stream()
+                .map(AssetMapper::toDTO)
+                .collect(Collectors.toList());
+OCCHIO A INSERIRE COSTRUTTI SIMILI: sono corretti ma devi saperli spiegare.
+
+TEORIA DA RIVEDERE:
+Collections
+Lambda expression
+Operatori ternari
+Method Reference
+Collectors
+Generics (tipi parametrizzati)
+Optional
+Eccezioni checked/unchecked e gestione errori
+OOP: incapsulamento, ereditarieta', polimorfismo
+Interfacce vs classi astratte
+Scope e lifecycle dei bean Spring
+JPA/Hibernate base (Entity, Repository, transazioni)
+REST e HTTP (metodi, status code)
+Test base con JUnit + Mockito
