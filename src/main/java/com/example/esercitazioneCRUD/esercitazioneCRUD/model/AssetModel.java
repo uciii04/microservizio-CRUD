@@ -16,6 +16,7 @@ public class AssetModel extends BaseEntity {
 	private String tipo;
 	private String codiceSeriale;
 	
+    @Override
 	public Long getId() {
 		return id;
 	}
