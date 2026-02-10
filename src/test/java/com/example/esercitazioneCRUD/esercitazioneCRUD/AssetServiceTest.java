@@ -26,13 +26,13 @@ public class AssetServiceTest {
     private AssetService assetService;
 
     @Test
-    void returnsAssets() {
-        when(assetRepository.findAll()).thenReturn(List.of(new AssetModel()));
+    void trovaTutti() {
+        when(assetRepository.findAll())
+                .thenReturn(List.of(new AssetModel()));
 
         List<AssetDTO> result = assetService.trovaTutti();
 
         verify(assetRepository).findAll();
         assertFalse(result.isEmpty());
     }
-    
 }

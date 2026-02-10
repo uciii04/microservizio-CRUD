@@ -1,7 +1,6 @@
 package com.example.esercitazioneCRUD.esercitazioneCRUD.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +25,19 @@ public class AssetService {
 
     public List<AssetDTO> trovaTutti() {
         List<AssetModel> assets = assetRepository.findAll();
-        return assets.stream()                          // Collection
-                     .map(AssetMapper::toDTO)           // Method reference
-                     .collect(Collectors.toList());     // Collectors
+
+        return assets.stream()                       //Collections .stream() per creare uno stream dalla lista
+                     .map(AssetMapper::toDTO)        //Method reference che abbrevia il codice
+                     .collect(Collectors.toList());  //Collectors .toList() per convertire lo stream in una lista
     }
 
     public void cancellaAsset(Long id) {
-    Optional<AssetModel> assetOpt = assetRepository.findById(id); //Utilizzo Optional
+        AssetModel asset = assetRepository.findById(id)   //Optional
+                .orElseThrow(() ->                        //Lambda expression e Concetto di Eccezioni unchecked per gestire il caso in cui l'asset non venga trovato
+                        new RuntimeException("Asset non trovato con ID: " + id)
+                );
 
-    AssetModel asset = assetOpt.orElseThrow(() -> new RuntimeException("Asset non trovato con ID: " + id) //Concetto di Eccezioni unchecked + Lambda expression
-    );
-
-    assetRepository.delete(asset);
+        assetRepository.delete(asset);
     }
 
 }

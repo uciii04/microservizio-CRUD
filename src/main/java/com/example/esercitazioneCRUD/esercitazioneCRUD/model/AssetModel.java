@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity          //Incapsulamento ed ereditarietà
+@Entity                 //Incapsulamento ed Ereditarietà
 public class AssetModel extends BaseEntity {
 	
 	@Id
@@ -16,7 +16,6 @@ public class AssetModel extends BaseEntity {
 	private String tipo;
 	private String codiceSeriale;
 	
-    @Override
 	public Long getId() {
 		return id;
 	}

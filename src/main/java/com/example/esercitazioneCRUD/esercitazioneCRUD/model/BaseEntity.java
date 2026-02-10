@@ -1,8 +1,7 @@
 package com.example.esercitazioneCRUD.esercitazioneCRUD.model;
 
-//implementazione classe astratta
+//Implementazione classe astratta
 public abstract class BaseEntity {
-    
     protected Long id;
 
     public Long getId() {
