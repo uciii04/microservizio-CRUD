@@ -5,8 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
-public class AssetModel {
+@Entity          //Incapsulamento ed ereditarietà
+public class AssetModel extends BaseEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +16,7 @@ public class AssetModel {
 	private String tipo;
 	private String codiceSeriale;
 	
+    @Override
 	public Long getId() {
 		return id;
 	}
