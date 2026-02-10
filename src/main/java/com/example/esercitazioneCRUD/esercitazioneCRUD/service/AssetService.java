@@ -25,17 +25,17 @@ public class AssetService {
 
     public List<AssetDTO> trovaTutti() {
         List<AssetModel> assets = assetRepository.findAll();
-        // Converte ogni Model trovato nel DB in un DTO per l'esterno
-        return assets.stream()
-                     .map(AssetMapper::toDTO)
-                     .collect(Collectors.toList());
+        return assets.stream()                       //Collections .stream() per creare uno stream dalla lista
+                     .map(AssetMapper::toDTO)        //Method reference che abbrevia il codice
+                     .collect(Collectors.toList());  //Collectors .toList() per convertire lo stream in una lista
     }
 
     public void cancellaAsset(Long id) {
-        if (assetRepository.existsById(id)) {
-            assetRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Asset non trovato con ID: " + id);
-        }
+        AssetModel asset = assetRepository.findById(id)   //Optional
+                .orElseThrow(() ->                        //Lambda expression e Concetto di Eccezioni unchecked per gestire il caso in cui l'asset non venga trovato
+                        new RuntimeException("Asset non trovato con ID: " + id)
+                );
+
+        assetRepository.delete(asset);
     }
 }
